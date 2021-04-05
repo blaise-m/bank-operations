@@ -1,5 +1,5 @@
-from shared import clear
-from auth import signup
+from shared import clear, error_response
+from auth import signup, login
 
 
 def init():
@@ -19,18 +19,16 @@ def init():
 
 	try:
 		response = int(input("\n\nPlease select an option to proceed: "))
-		
-		if response == 1:
-			signup()
-		elif response == 2:
-			pass
-		elif response == 3:
-			pass
-		else:
-			print("You have entered an invalid input. Valid options are 1, 2 or 3")
-			input("\n\nPlease press any key to proceed: ")
-			init()
 	except:
+		error_response(init)
+		
+	if response == 1:
+		signup()
+	elif response == 2:
+		login()
+	elif response == 3:
+		exit()
+	else:
 		print("You have entered an invalid input. Valid options are 1, 2 or 3")
 		input("\n\nPlease press any key to proceed: ")
 		init()
