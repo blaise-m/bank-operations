@@ -30,7 +30,7 @@ def init():
 		exit()
 	else:
 		print("You have entered an invalid input. Valid options are 1, 2 or 3")
-		input("\n\nPlease press any key to proceed: ")
+		input("\n\nPlease press Enter to proceed: ")
 		init()
 
 
@@ -42,6 +42,6 @@ if __name__ == "__main__":
 	print("**************************")
 	print("\nDear esteemed client, welcome to BLAZE Bank ATM")
 	print("Please sit back and feel at home while we diligently serve you!!")	
-	input("\n\nPress any key to continue: ")
+	input("\n\nPress Enter to continue: ")
 
 	init()

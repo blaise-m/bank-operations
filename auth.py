@@ -1,11 +1,7 @@
 import random
-from shared import clear, error_response
+from shared import clear, error_response, generated_ids, clients, complaints
 from operations import dashboard
 from client import ClientAccount
-
-
-generated_ids = []
-clients = {}
 
 
 def generate_id():
@@ -55,9 +51,13 @@ def signup():
 	client = ClientAccount(userid=userid, firstname=firstname, lastname=lastname, email=email, password=password)
 
 	clients[userid] = client
+	complaints[userid] = []
 	print("\n\nCongratulations!! Your Account has been successfully created.")
-	print(f"Your account number is {userid}")
-	input("\n\nPress any key to proceed and login: ")
+	print(f"Your account number is {userid}. Please note it down since it is used for login")
+	
+	response = input("\n\nPress Enter to proceed and login or 0+Enter to Exit: ")
+
+	if response == "0": exit()
 
 	login()
 
@@ -69,7 +69,7 @@ def authenticate_user(account_number, password):
 	'''
 	for account in clients.keys():
 		valid_account = (account == account_number)
-		valid_password = (clients[account].password == password)
+		valid_password = (clients[account].get_password() == password)
 
 		if valid_account and valid_password:
 			return True
@@ -99,11 +99,13 @@ def login():
 		print("\n\nWrong account number or password!!!")
 		
 		try:
-			response = input("Press 1 to create a new account or press any other key to try again: ")
+			response = input("Press Enter to try again, 1+Enter to create a new account or 0+Enter to Exit: ")
 		except:
 			error_response(login)
 
-		if response == "1":
+		if response == "0":
+			exit()
+		elif response == "1":
 			signup()
 		else:
 			login()

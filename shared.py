@@ -1,4 +1,9 @@
-from os import system
+from os import system, name
+
+
+generated_ids = []
+clients = {}
+complaints = {}
 
 
 def clear():
@@ -7,16 +12,19 @@ def clear():
 	Else does nothing
 	'''
 	try:
-		system('clear')
+		if name == 'nt':
+			system('cls')
+		else:
+			system('clear')
 	except:
 		pass
 
 
-def error_response(callback):
+def error_response(callback, *args):
 	'''
 	Takes in a function to call when an error occurs
 	Gives the user feedback when the error occurs and calls the function
 	'''
 	print("\n\nAn error occurred while processing your input!!!")
-	input("Press any key to proceed: ")
-	callback()
+	input("Press Enter to proceed: ")
+	callback(*args)
