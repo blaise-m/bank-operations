@@ -1,4 +1,4 @@
-class ClientAccount():
+class ClientAccount:
 	'''
 	Used to generate client account objects
 	Takes in userid, firstname, lastname, email and password
@@ -104,7 +104,7 @@ class ClientAccount():
 		return f'{self.__firstname} {self.__lastname}'
 
 
-class ClientComplaint():
+class ClientComplaint:
 	'''
 	Used to generate client complaint objects
 	Takes in a client and a complaint
